@@ -12,8 +12,16 @@
         <div class="col-md-4">
           <img src="https://via.placeholder.com/250x350" class="img-fluid rounded" alt="Book Cover">
         </div>
+
+
+<?php
+include_once 'get_data_from_db.php';
+?>
+
+
+
         <div class="col-md-8">
-          <h3>The Alchemist</h3>
+          <h3>The <?php $values ?> </h3>
           <p><strong>Author:</strong> Paulo Coelho</p>
           <p><strong>ISBN:</strong> 9780061122415</p>
           <p><strong>Publisher:</strong> HarperOne</p>

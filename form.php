@@ -19,18 +19,10 @@ function clean_input($data){
 }
 
 
+include_once 'db_connect.php';
+// include_once 'get_data_from_db.php';
 
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "hospital_management";
-
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Process the form data
