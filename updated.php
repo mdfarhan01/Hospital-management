@@ -1,29 +1,47 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<?php
+// Connect to the database
+include_once 'db_connect.php';
 
-<form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data"><!--use for enctype data image-->
-    <h1>Update table Detail</h1>
-    {% csrf_token %}
+// Check if form was submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve and sanitize POST data
+    $patientId = trim($_POST['patientId']);
+    $patientName = trim($_POST['patientName']);
+    $dob = $_POST['dob'];
+    $gender = $_POST['gender'];
+    $contactNumber = trim($_POST['contactNumber']);
+    $email = trim($_POST['email']);
+    $address = trim($_POST['address']);
+    $medicalHistory = trim($_POST['medicalHistory']);
 
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Name</label>
-      <input type="text" name='name' value="{{emp.name}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">AGE</label>
-        <input type="text" name='age' value="{{emp.age}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      </div>
-    <div class="mb-3">
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Mobile</label>
-            <input type="text" name='mobile' value="{{emp.mobile}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          </div>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">City</label>
-            <input type="text" name='city' value="{{emp.city}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Image</label>
-            <input name="pic" type="file" value="{{emp.pic}}" class="form-control">
-          </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+    // Prepare SQL query to update the record
+    $sql = "UPDATE `patient_management_table` 
+            SET 
+                `Patient Name` = ?, 
+                `Date of Birth` = ?, 
+                `Gender` = ?, 
+                `Contact Number` = ?, 
+                `Email` = ?, 
+                `Address` = ?, 
+                `Medical History` = ?
+            WHERE `Patient ID` = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssssss", $patientName, $dob, $gender, $contactNumber, $email, $address, $medicalHistory, $patientId);
+
+    // Execute and check
+    if ($stmt->execute()) {
+        // Success - redirect back to main list or success page
+        header("Location: index.php?status=updated");
+        exit();
+    } else {
+        echo "Error updating record: " . $conn->error;
+    }
+
+    $stmt->close();
+    $conn->close();
+} else {
+    // If the request was not POST, deny access
+    echo "Invalid request.";
+}
+?>
