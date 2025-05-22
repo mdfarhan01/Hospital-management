@@ -1,12 +1,12 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 include_once './get_data_from_db.php';
 
-if (!isset($get_data) || !is_array($get_data)) {
-    $get_data = [];
-}
+// if (!isset($get_data) || !is_array($get_data)) {
+//     $get_data = [];
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">

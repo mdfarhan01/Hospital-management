@@ -10,4 +10,17 @@ if ($result && mysqli_num_rows($result) > 0) {
         $get_data[] = $row;
     }
 }
+
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
+if (!isset($get_data) || !is_array($get_data)) {
+    $get_data = [];
+}
+
+
+
+
 ?>
