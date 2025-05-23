@@ -7,7 +7,7 @@ function clean_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
 
-$required_fields = ['patientId', 'patientName', 'dob', 'gender', 'contactNumber', 'email', 'address', 'medicalHistory'];
+$required_fields = ['patientName', 'dob', 'gender', 'contactNumber', 'email', 'address', 'medicalHistory'];
 $errors = [];
 
 foreach ($required_fields as $field) {
@@ -28,7 +28,7 @@ if (!empty($errors)) {
 }
 
 // Clean inputs
-$patientId = clean_input($_POST['patientId']);
+// $patientId = clean_input($_POST['patientId']);
 $patientName = clean_input($_POST['patientName']);
 $dob = clean_input($_POST['dob']);
 $gender = clean_input($_POST['gender']);

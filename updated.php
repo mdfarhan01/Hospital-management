@@ -5,7 +5,7 @@ include_once 'db_connect.php';
 // Check if form was submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve and sanitize POST data
-    $patientId = trim($_POST['patientId']);
+    // $patientId = trim($_POST['patientId']);
     $patientName = trim($_POST['patientName']);
     $dob = $_POST['dob'];
     $gender = $_POST['gender'];

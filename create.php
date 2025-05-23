@@ -10,8 +10,8 @@
     <h2 class="mb-4">Add New Patient</h2>
     <form action="form.php" class="bg-white p-4 rounded shadow-sm" method="POST">
       <div class="row g-3">
-        <label for="patientId">Patient ID</label>
-        <input type="text" id="patientId" name="patientId" class="form-control" required>
+        <!-- <label for="patientId">Patient ID</label>
+        <input type="text" id="patientId" name="patientId" class="form-control" required> -->
 
         <label for="patientName">Full Name</label>
         <input type="text" id="patientName" name="patientName" class="form-control" required>
