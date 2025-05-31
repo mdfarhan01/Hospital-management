@@ -14,6 +14,4 @@ $stmt->bind_param("s", $patientId);
 $stmt->execute();
 $result = $stmt->get_result();
 
-
-
 ?>
